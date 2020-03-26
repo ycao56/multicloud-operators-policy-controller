@@ -1,11 +1,11 @@
 apiVersion: policies.ibm.com/v1alpha1
-kind: SamplePolicy
+kind: TrustedContainerPolicy
 metadata:
   name: example-samplepolicy
 spec:
   severity: low
   namespaceSelector:
-    include: ["default","kube-*"]
+    include: ["default"]
     exclude: ["kube-system"]
   remediationAction: inform
   maxClusterRoleBindingGroups: 10

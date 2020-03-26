@@ -24,17 +24,17 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicy":       schema_pkg_apis_policies_v1alpha1_SamplePolicy(ref),
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicySpec":   schema_pkg_apis_policies_v1alpha1_SamplePolicySpec(ref),
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicyStatus": schema_pkg_apis_policies_v1alpha1_SamplePolicyStatus(ref),
+		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicy":       schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicy(ref),
+		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec":   schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref),
+		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus": schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicyStatus(ref),
 	}
 }
 
-func schema_pkg_apis_policies_v1alpha1_SamplePolicy(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicy(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SamplePolicy is the Schema for the samplepolicies API",
+				Description: "TrustedContainerPolicy is the Schema for the samplepolicies API",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -58,27 +58,27 @@ func schema_pkg_apis_policies_v1alpha1_SamplePolicy(ref common.ReferenceCallback
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicySpec"),
+							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicyStatus"),
+							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicySpec", "github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.SamplePolicyStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec", "github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_pkg_apis_policies_v1alpha1_SamplePolicySpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SamplePolicySpec defines the desired state of SamplePolicy",
+				Description: "TrustedContainerPolicySpec defines the desired state of TrustedContainerPolicy",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"severity": {
@@ -147,11 +147,11 @@ func schema_pkg_apis_policies_v1alpha1_SamplePolicySpec(ref common.ReferenceCall
 	}
 }
 
-func schema_pkg_apis_policies_v1alpha1_SamplePolicyStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicyStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SamplePolicyStatus defines the observed state of SamplePolicy",
+				Description: "TrustedContainerPolicyStatus defines the observed state of TrustedContainerPolicy",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"compliant": {

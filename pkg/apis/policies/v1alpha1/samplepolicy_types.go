@@ -52,47 +52,48 @@ type Target struct {
 	Exclude []string `json:"exclude,omitempty"`
 }
 
-// SamplePolicySpec defines the desired state of SamplePolicy
+// TrustedContainerPolicySpec defines the desired state of TrustedContainerPolicy
 // +k8s:openapi-gen=true
-type SamplePolicySpec struct {
+type TrustedContainerPolicySpec struct {
 	Severity                         Severity          `json:"severity,omitempty"`          //low, medium, high
 	RemediationAction                RemediationAction `json:"remediationAction,omitempty"` //enforce, inform
 	NamespaceSelector                Target            `json:"namespaceSelector,omitempty"` // selecting a list of namespaces where the policy applies
 	LabelSelector                    map[string]string `json:"labelSelector,omitempty"`
+	ImageRegistry                    string            `json:"imageRegistry,omitempty"`
 	MaxRoleBindingUsersPerNamespace  int               `json:"maxRoleBindingUsersPerNamespace,omitempty"`
 	MaxRoleBindingGroupsPerNamespace int               `json:"maxRoleBindingGroupsPerNamespace,omitempty"`
 	MaxClusterRoleBindingUsers       int               `json:"maxClusterRoleBindingUsers,omitempty"`
 	MaxClusterRoleBindingGroups      int               `json:"maxClusterRoleBindingGroups,omitempty"`
 }
 
-// SamplePolicyStatus defines the observed state of SamplePolicy
+// TrustedContainerPolicyStatus defines the observed state of TrustedContainerPolicy
 // +k8s:openapi-gen=true
-type SamplePolicyStatus struct {
+type TrustedContainerPolicyStatus struct {
 	ComplianceState   ComplianceState                `json:"compliant,omitempty"`         // Compliant, NonCompliant, UnkownCompliancy
 	CompliancyDetails map[string]map[string][]string `json:"compliancyDetails,omitempty"` // reason for non-compliancy
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// SamplePolicy is the Schema for the samplepolicies API
+// TrustedContainerPolicy is the Schema for the samplepolicies API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:path=samplepolicies,scope=Namespaced
-type SamplePolicy struct {
+type TrustedContainerPolicy struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   SamplePolicySpec   `json:"spec,omitempty"`
-	Status SamplePolicyStatus `json:"status,omitempty"`
+	Spec   TrustedContainerPolicySpec   `json:"spec,omitempty"`
+	Status TrustedContainerPolicyStatus `json:"status,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// SamplePolicyList contains a list of SamplePolicy
-type SamplePolicyList struct {
+// TrustedContainerPolicyList contains a list of TrustedContainerPolicy
+type TrustedContainerPolicyList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []SamplePolicy `json:"items"`
+	Items           []TrustedContainerPolicy `json:"items"`
 }
 
 // Policy is a specification for a Policy resource
@@ -114,5 +115,5 @@ type PolicyList struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&SamplePolicy{}, &SamplePolicyList{})
+	SchemeBuilder.Register(&TrustedContainerPolicy{}, &TrustedContainerPolicyList{})
 }
