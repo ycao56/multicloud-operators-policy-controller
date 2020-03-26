@@ -35,6 +35,8 @@ spec:
               additionalProperties:
                 type: string
               type: object
+            imageRegistry:
+              type: string
             maxClusterRoleBindingGroups:
               type: integer
             maxClusterRoleBindingUsers:

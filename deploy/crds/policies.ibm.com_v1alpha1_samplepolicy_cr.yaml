@@ -8,8 +8,4 @@ spec:
     include: ["default"]
     exclude: ["kube-system"]
   remediationAction: inform
-  maxClusterRoleBindingGroups: 10
-  maxClusterRoleBindingUsers: 10
-  maxRoleBindingGroupsPerNamespace: 2
-  maxRoleBindingUsersPerNamespace: 2
-
+  imageRegistry: test

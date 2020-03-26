@@ -220,9 +220,6 @@ func PeriodicallyExecSamplePolicies(freq uint) {
 			podList, err := (*common.KubeClient).CoreV1().Pods(namespace).
 				List(metav1.ListOptions{LabelSelector: labels.Set(policy.Spec.LabelSelector).String()})
 
-			glog.V(1).Infof("podList %s", podList)
-			// roleBindingList, err := (*common.KubeClient).RbacV1().RoleBindings(namespace).
-			// 	List(metav1.ListOptions{LabelSelector: labels.Set(policy.Spec.LabelSelector).String()})
 			if err != nil {
 				glog.Errorf("reason: communication error, subject: k8s API server, namespace: %v, according to policy: %v, additional-info: %v\n",
 					namespace, policy.Name, err)
@@ -230,7 +227,7 @@ func PeriodicallyExecSamplePolicies(freq uint) {
 			}
 			podViolationCount := checkPodViolationsPerNamespace(podList, policy)
 			glog.V(5).Infof("podViolationCount: %s", podViolationCount)
-			// userViolationCount, GroupViolationCount := checkViolationsPerNamespace(roleBindingList, policy)
+
 			if strings.EqualFold(string(policy.Spec.RemediationAction), string(policiesv1alpha1.Enforce)) {
 				glog.V(5).Infof("Enforce is set, but ignored :-)")
 			}
@@ -239,10 +236,6 @@ func PeriodicallyExecSamplePolicies(freq uint) {
 			}
 			checkComplianceBasedOnDetails(policy)
 		}
-		// err := checkUnNamespacedPolicies(plcToUpdateMap)
-		// if err != nil {
-		// 	glog.V(3).Infof("Failed to checkUnNamespacedPolicies")
-		// }
 
 		//update status of all policies that changed:
 		faultyPlc, err := updatePolicyStatus(plcToUpdateMap)
@@ -282,35 +275,6 @@ func ensureDefaultLabel(instance *policiesv1alpha1.TrustedContainerPolicy) (upda
 	}
 	return false
 }
-
-// func checkUnNamespacedPolicies(plcToUpdateMap map[string]*policiesv1alpha1.TrustedContainerPolicy) error {
-// 	plcMap := convertMaptoPolicyNameKey()
-// 	// group the policies with cluster users and the ones with groups
-// 	// take the plc with min users and groups and make it your baseline
-// 	ClusteRoleBindingList, err := (*common.KubeClient).RbacV1().ClusterRoleBindings().List(metav1.ListOptions{})
-// 	if err != nil {
-// 		glog.Errorf("reason: communication error, subject: k8s API server, namespace: all, according to policy: none, additional-info: %v\n", err)
-// 		return err
-// 	}
-
-// 	clusterLevelUsers, clusterLevelGroups := checkAllClusterLevel(ClusteRoleBindingList)
-
-// 	for _, policy := range plcMap {
-// 		var userViolationCount, groupViolationCount int
-// 		if policy.Spec.MaxClusterRoleBindingUsers < clusterLevelUsers && policy.Spec.MaxClusterRoleBindingUsers >= 0 {
-// 			userViolationCount = clusterLevelUsers - policy.Spec.MaxClusterRoleBindingUsers
-// 		}
-// 		if policy.Spec.MaxClusterRoleBindingGroups < clusterLevelGroups && policy.Spec.MaxClusterRoleBindingGroups >= 0 {
-// 			groupViolationCount = clusterLevelGroups - policy.Spec.MaxClusterRoleBindingGroups
-// 		}
-// 		if addViolationCount(policy, userViolationCount, groupViolationCount, "cluster-wide") {
-// 			plcToUpdateMap[policy.Name] = policy
-// 		}
-// 		checkComplianceBasedOnDetails(policy)
-// 	}
-
-// 	return nil
-// }
 
 func checkAllClusterLevel(clusterRoleBindingList *v1.ClusterRoleBindingList) (userV, groupV int) {
 	usersMap := make(map[string]bool)
@@ -369,30 +333,17 @@ func checkPodViolationsPerNamespace(podList *corev1.PodList, plc *policiesv1alph
 				podViolationCount++
 			}
 		}
-		// for _, subject := range roleBinding.Subjects {
-		// 	if subject.Kind == "User" {
-		// 		usersMap[subject.Name] = true
-		// 	}
-		// 	if subject.Kind == "Group" {
-		// 		groupsMap[subject.Name] = true
-		// 	}
-		// }
 	}
-	// if plc.Spec.MaxRoleBindingUsersPerNamespace < len(usersMap) && plc.Spec.MaxRoleBindingUsersPerNamespace >= 0 {
-	// 	userViolationCount = (len(usersMap) - plc.Spec.MaxRoleBindingUsersPerNamespace)
-	// }
-	// if plc.Spec.MaxRoleBindingGroupsPerNamespace < len(groupsMap) && plc.Spec.MaxRoleBindingGroupsPerNamespace >= 0 {
-	// 	groupViolationCount = (len(groupsMap) - plc.Spec.MaxRoleBindingGroupsPerNamespace)
-	// }
 	return podViolationCount
 }
 
 func addViolationCount(plc *policiesv1alpha1.TrustedContainerPolicy, podCount int, namespace string) bool {
 	changed := false
-	msg := fmt.Sprintf("%s violations detected in namespace `%s`, there are %v pod violations",
+	msg := fmt.Sprintf("%s violations detected in namespace `%s`, there are %v containers not running trusted images from registry `%s`",
 		fmt.Sprint(podCount),
 		namespace,
-		podCount)
+		podCount,
+		plc.Spec.ImageRegistry)
 	if plc.Status.CompliancyDetails == nil {
 		plc.Status.CompliancyDetails = make(map[string]map[string][]string)
 	}
