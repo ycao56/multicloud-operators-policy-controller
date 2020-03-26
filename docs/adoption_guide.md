@@ -52,7 +52,7 @@ Status:
 ## Build a local container image
 ### Using operator-sdk command
 ```bash
-operator-sdk build ibm/multicloud-operators-policy-controller:latest
+operator-sdk build ycao56/trusted-container-policy-controller:latest
 ```
 
 ## Make your own policy controller

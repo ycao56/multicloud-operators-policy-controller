@@ -1,31 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: multicloud-operators-policy-controller
+  name: trusted-container-policy-controller
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: multicloud-operators-policy-controller
+      name: trusted-container-policy-controller
   template:
     metadata:
       labels:
-        name: multicloud-operators-policy-controller
+        name: trusted-container-policy-controller
     spec:
-      serviceAccountName: multicloud-operators-policy-controller
+      serviceAccountName: trusted-container-policy-controller
       containers:
-        - name: multicloud-operators-policy-controller
+        - name: trusted-container-policy-controller
           # Replace this with the built image name
-          image: ibm/multicloud-operators-policy-controller
+          image: quay.io/ycao56/trusted-container-policy-controller
           command:
-          - multicloud-operators-policy-controller
+          - trusted-container-policy-controller
           imagePullPolicy: Always
           env:
-            - name: WATCH_NAMESPACE
-              value: default
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
             - name: OPERATOR_NAME
-              value: "multicloud-operators-policy-controller"
+              value: "trusted-container-policy-controller"

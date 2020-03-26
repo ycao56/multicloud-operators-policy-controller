@@ -29,8 +29,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	policiesv1alpha1 "github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1"
-	"github.com/IBM/multicloud-operators-policy-controller/pkg/common"
+	policiesv1alpha1 "github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1"
+	"github.com/ycao56/trusted-container-policy-controller/pkg/common"
 )
 
 var mgr manager.Manager

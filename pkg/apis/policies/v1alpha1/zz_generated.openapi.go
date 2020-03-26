@@ -24,9 +24,9 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicy":       schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicy(ref),
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec":   schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref),
-		"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus": schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicyStatus(ref),
+		"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicy":       schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicy(ref),
+		"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec":   schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref),
+		"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus": schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicyStatus(ref),
 	}
 }
 
@@ -58,19 +58,19 @@ func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicy(ref common.Referen
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec"),
+							Ref: ref("github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus"),
+							Ref: ref("github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec", "github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicySpec", "github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.TrustedContainerPolicyStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -97,7 +97,7 @@ func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref common.Ref
 					"namespaceSelector": {
 						SchemaProps: spec.SchemaProps{
 							Description: "enforce, inform",
-							Ref:         ref("github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.Target"),
+							Ref:         ref("github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.Target"),
 						},
 					},
 					"labelSelector": {
@@ -143,7 +143,7 @@ func schema_pkg_apis_policies_v1alpha1_TrustedContainerPolicySpec(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1.Target"},
+			"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1.Target"},
 	}
 }
 

@@ -15,7 +15,7 @@
 package apis
 
 import (
-	"github.com/IBM/multicloud-operators-policy-controller/pkg/apis/policies/v1alpha1"
+	"github.com/ycao56/trusted-container-policy-controller/pkg/apis/policies/v1alpha1"
 )
 
 func init() {

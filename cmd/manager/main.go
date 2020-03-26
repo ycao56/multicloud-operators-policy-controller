@@ -25,8 +25,8 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 	"k8s.io/client-go/rest"
 
-	"github.com/IBM/multicloud-operators-policy-controller/pkg/apis"
-	"github.com/IBM/multicloud-operators-policy-controller/pkg/controller"
+	"github.com/ycao56/trusted-container-policy-controller/pkg/apis"
+	"github.com/ycao56/trusted-container-policy-controller/pkg/controller"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	kubemetrics "github.com/operator-framework/operator-sdk/pkg/kube-metrics"
@@ -43,8 +43,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/manager/signals"
 
-	common "github.com/IBM/multicloud-operators-policy-controller/pkg/common"
-	policyStatusHandler "github.com/IBM/multicloud-operators-policy-controller/pkg/controller/samplepolicy"
+	common "github.com/ycao56/trusted-container-policy-controller/pkg/common"
+	policyStatusHandler "github.com/ycao56/trusted-container-policy-controller/pkg/controller/samplepolicy"
 )
 
 // Change below variables to serve metrics on different host or port.
@@ -104,7 +104,7 @@ func main() {
 
 	ctx := context.TODO()
 	// Become the leader before proceeding
-	err = leader.Become(ctx, "multicloud-operators-policy-controller-lock")
+	err = leader.Become(ctx, "trusted-container-policy-controller-lock")
 	if err != nil {
 		log.Error(err, "")
 		os.Exit(1)

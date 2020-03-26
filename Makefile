@@ -18,8 +18,8 @@ BUILD_LOCALLY ?= 1
 
 # Image URL to use all building/pushing image targets;
 # Use your own docker registry and image name for dev/test by overridding the IMG and REGISTRY environment variable.
-IMG ?= multicloud-operators-policy-controller
-REGISTRY ?= quay.io/multicloudlab
+IMG ?= trusted-container-policy-controller
+REGISTRY ?= quay.io/ycao56
 
 # Github host to use for checking the source tree;
 # Override this variable ue with your own value if you're working on forked repo.
@@ -112,7 +112,7 @@ coverage:
 ############################################################
 
 build:
-	@common/scripts/gobuild.sh build/_output/bin/multicloud-operators-policy-controller ./cmd/manager
+	@common/scripts/gobuild.sh build/_output/bin/trusted-container-policy-controller ./cmd/manager
 
 
 ############################################################

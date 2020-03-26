@@ -1,4 +1,4 @@
-module github.com/IBM/multicloud-operators-policy-controller
+module github.com/ycao56/trusted-container-policy-controller
 
 require (
 	github.com/go-openapi/spec v0.17.2
