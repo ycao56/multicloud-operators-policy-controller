@@ -23,3 +23,7 @@ spec:
           env:
             - name: OPERATOR_NAME
               value: "trusted-container-policy-controller"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
