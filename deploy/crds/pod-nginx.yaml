@@ -6,6 +6,7 @@ metadata:
 spec:
   containers:
   - image: nginx:1.7.9
+  # - image: quay.io/ycao56/nginx:latest
     name: nginx
     ports:
     - containerPort: 80
