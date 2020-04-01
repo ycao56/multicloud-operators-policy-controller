@@ -42,9 +42,10 @@ kubectl apply -f deploy/crds/pod-nginx.yaml
 ```
 
 ## To run it with IBM Multicloud Manager
-1. Repeat step 1 to 5 on the managed cluster. Make sure you deploy them to cluster namespace. The namespace name is usually your cluster name
+1. Repeat step 1 to 4 on the managed cluster. Make sure you deploy them to cluster namespace. The namespace name is usually your cluster name
 2. Run following command to create a MCM policy on hub cluster
 ```
 kubectl apply -f deploy/crds/mcm-trustedcontainerpolicy.yaml
 ```
-3. Then you should be able to see the policy and violation status on MCM console
+3. Run step 6 on managed cluster to generate a violation
+4. Then you should be able to see the policy and violation status on MCM console
