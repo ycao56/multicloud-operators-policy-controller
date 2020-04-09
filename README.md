@@ -28,6 +28,8 @@ kubectl apply -f deploy/crds/policies.ibm.com_trustedcontainerpolicies_crd.yaml
 ```
 sed -i "" 's|namespace: default|namespace: <namespace>|g' deploy/cluster_role_binding.yaml
 ```
+In addition, change the watch namespace of the controller in `deploy/operator.yaml`.
+
 4. Run following command to deploy `Trusted Container Policy Controller`
 ```
 kubectl apply -f deploy/
