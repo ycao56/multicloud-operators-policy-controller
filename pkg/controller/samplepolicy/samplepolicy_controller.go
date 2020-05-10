@@ -562,7 +562,7 @@ func createParentPolicy(instance *policiesv1alpha1.TrustedContainerPolicy) polic
 		},
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "Policy",
-			APIVersion: " policies.ibm.com/v1alpha1",
+			APIVersion: "policies.open-cluster-management.io/v1",
 		},
 	}
 	return plc

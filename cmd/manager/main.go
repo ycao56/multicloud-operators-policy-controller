@@ -50,7 +50,7 @@ import (
 // Change below variables to serve metrics on different host or port.
 var (
 	metricsHost               = "0.0.0.0"
-	metricsPort         int32 = 8383
+	metricsPort         int32 = 8389
 	operatorMetricsPort int32 = 8686
 )
 var log = logf.Log.WithName("cmd")
@@ -89,7 +89,7 @@ func main() {
 
 	printVersion()
 
-	namespace, err := k8sutil.GetOperatorNamespace()
+	namespace, err := k8sutil.GetWatchNamespace()
 	if err != nil {
 		log.Error(err, "Failed to get watch namespace")
 		os.Exit(1)

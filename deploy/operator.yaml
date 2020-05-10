@@ -16,11 +16,13 @@ spec:
       containers:
         - name: trusted-container-policy-controller
           # Replace this with the built image name
-          image: quay.io/ycao56/trusted-container-policy-controller
+          image: quay.io/ycao56/trusted-container-policy-controller:acm
           command:
           - trusted-container-policy-controller
           imagePullPolicy: Always
           env:
+            - name: WATCH_NAMESPACE
+              value: ironman
             - name: OPERATOR_NAME
               value: "trusted-container-policy-controller"
             - name: POD_NAME
