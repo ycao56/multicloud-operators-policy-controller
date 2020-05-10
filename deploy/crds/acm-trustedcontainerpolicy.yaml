@@ -29,15 +29,14 @@ kind: PlacementBinding
 metadata:
   name: binding-policy-trustedcontainer
   namespace: default
-spec:
-  placementRef:
-    name: placement-policy-trustedcontainer
-    kind: PlacementRule
-    apiGroup: apps.open-cluster-management.io
-  subjects:
-  - name: policy-trustedcontainer
-    kind: Policy
-    apiGroup: policies.open-cluster-management.io
+placementRef:
+  name: placement-policy-trustedcontainer
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-trustedcontainer
+  kind: Policy
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -49,4 +48,5 @@ spec:
   - type: OK
   clusterSelector:
     matchExpressions:
-      []
+      - {key: name, operator: In, values: ["ironman"]}
+

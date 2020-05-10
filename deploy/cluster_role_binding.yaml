@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: trusted-container-policy-controller
-  namespace: calamari
+  namespace: multicluster-endpoint
 roleRef:
   kind: ClusterRole
   name: trusted-container-policy-controller
