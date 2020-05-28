@@ -50,4 +50,9 @@ metadata:
   name: placement-trustedcontainer
   namespace: default
 spec:
-  clusterLabels: {}
+  clusterLabels:
+    matchExpressions:
+      - key: name
+        operator: In
+        values:
+          - iseclcluster
