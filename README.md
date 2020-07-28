@@ -1,4 +1,7 @@
 # Trusted Container Policy Controller
+## Background
+
+This is part of Policy Based Governance in Trusted Container Platform. For more information, read https://www.nccoe.nist.gov/news/policy-based-governance-trusted-container-platform
 
 ## What does it do ?
 
